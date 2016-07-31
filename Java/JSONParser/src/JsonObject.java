@@ -2,12 +2,14 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 public class JsonObject {
 	
 	public String key;
 	public JsonValue value;
 	public JsonObject obj;
+	private Map<String, JsonValue> valuePair;
 	
 	public JsonObject() {
 		
@@ -15,8 +17,7 @@ public class JsonObject {
 
 	// add a name/value pair to the object
 	public void add(String name, JsonValue value) {
-		this.key = name;
-		this.value = value;
+		valuePair.put(name, value);
 	}
 	
 	// return the value corresponding to a name.
@@ -99,6 +100,7 @@ public class JsonObject {
 			// Implemeted getNextToken()
 			//System.out.println(tokenizer.getNextToken().sequence);
 			//System.out.println(tokenizer.getNextToken().sequence);
+			// Moded getNextToken() to parser class
 			
 			// Doing parser Implementation
 			

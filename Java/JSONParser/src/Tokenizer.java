@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,20 +73,5 @@ public class Tokenizer {
 		return tokens;
 	}
 
-	static private ListIterator<Token> lexeme;
-	private boolean alreadyExecuted = false;
-
-	public Token getNextToken() {
-		if (!alreadyExecuted) {
-			lexeme = (ListIterator<Token>) tokens.listIterator();
-			alreadyExecuted = true;
-		}
-		try {
-			return lexeme.next();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
 }
