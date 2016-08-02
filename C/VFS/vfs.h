@@ -9,6 +9,13 @@
  * 
  *  Design Patter : State based model.
  *  Structure vfs stores the state of vfs.
+ * Version 1.2
+ * 
+ * sort the file info using qsort and search the file to be read using bsearch
+ *
+ * The following modification has be done:
+ *  - I am saving the vfs header information only at the last to vfs.
+ *  - Hence extract in the current session needs a work around
  *
  */
 

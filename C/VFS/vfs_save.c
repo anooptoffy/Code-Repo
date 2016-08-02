@@ -1,6 +1,14 @@
 #include "vfs.h"
 
 extern struct vfs _vfs;
+
+int comparatorfnc(const void *f1, const void *f2) 
+{
+        char *_f_1 = (*(struct vfs_file_info *)f1).fname;
+        char *_f_2 = (*(struct vfs_file_info *)f2).fname;
+        return strcmp(_f_1, _f_2);
+}
+
 int vfs_save(char *name_with_path){
 	int status = 1;
 	
@@ -61,6 +69,8 @@ int vfs_save(char *name_with_path){
 				_vfs.header.vfs_files[_vfs.header.vfs_info.num_files] = _vf_file;
 				_vfs.header.vfs_info.num_files++;
 			}
+
+			qsort(_vfs.header.vfs_files, _vfs.header.vfs_info.num_files, sizeof(struct vfs_file_info), comparatorfnc);
 		}
 		fclose(fp);
 		

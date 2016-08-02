@@ -1,6 +1,6 @@
 #include "vfs.h"
 
-// implement bsearch here
+// v1.2 : use bsearch for search the file
 
 extern struct vfs _vfs;
 int vfs_extract(char *saved_name,char *name_with_path){
@@ -44,25 +44,12 @@ int vfs_extract(char *saved_name,char *name_with_path){
 			while(size > 0)
 			{
 				
-				//printf("%c",fgetc(_vfs.vfs_fp));
+				printf("%c",fgetc(_vfs.vfs_fp));
 				c = fgetc(_vfs.vfs_fp);
 				fputc(c,fp);
 				size--;
 			}
-// 			buffer = (char *)malloc(size * sizeof(char));
-// #ifdef DEBUG
-// 			printf("\n[INFO] Here2!");
-// #endif			
 
-// 			bytes_read =  fread(&buffer,size,1,_vfs.vfs_fp);
-// 			buffer[size] = '\0';
-// #ifdef DEBUG
-// 			printf("\n[INFO] The bytes read are %ld" , bytes_read);
-// 			printf("\n[INFO] The contents of the file are : ");
-// 			printf("\n[INFO] %s",buffer);
-// #endif			
-
-// 			fwrite(&buffer,size,1,fp);
 			fclose(fp);
 		}
 	}
