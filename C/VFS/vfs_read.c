@@ -14,6 +14,7 @@ int vfs_extract(char *saved_name,char *name_with_path){
 
 	for(int i = 0; i < _vfs.header.vfs_info.num_files; i++)
 	{
+
 #ifdef DEBUG
 		printf("\n[DEBUG] The file name is %s",_vfs.header.vfs_files[i].fname );
 #endif		
@@ -35,6 +36,7 @@ int vfs_extract(char *saved_name,char *name_with_path){
 			long size = _vfs.header.vfs_files[i].file_size;
 			size_t bytes_read;
 			fseek(_vfs.vfs_fp, offset, SEEK_SET);
+
 #ifdef DEBUG
 			printf("\n[INFO] Here1!");
 #endif			
@@ -44,8 +46,9 @@ int vfs_extract(char *saved_name,char *name_with_path){
 			while(size > 0)
 			{
 				
-				printf("%c",fgetc(_vfs.vfs_fp));
+				
 				c = fgetc(_vfs.vfs_fp);
+				//printf("%c",c);
 				fputc(c,fp);
 				size--;
 			}

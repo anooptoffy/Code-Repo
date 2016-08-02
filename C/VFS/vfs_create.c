@@ -12,11 +12,10 @@ int vfs_create(char *name_with_path){
 	if(fp != NULL)
 	{
 		fclose(fp);
-		//printf("\n[WARNING] The file system (%s) already exists",name_with_path);
 		status = 1;
 	}
 	else{
-		fp = fopen(name_with_path,"w");
+		fp = fopen(name_with_path,"w+");
 		if(fp == NULL){
 			printf("\nUnable to open the file");
 		}
@@ -27,15 +26,10 @@ int vfs_create(char *name_with_path){
 		_vf.offset = 2048; // assumption that header is saved till first 1000B
 		_hf.vfs_info = _vf;
 		// _hf.vfs_files No file info added since its creation
-
-		//fwrite(&_vf,sizeof(_vf),1,fp);
 		_vfs.vfs_status = VFS_OPEN; 
 		_vfs.vfs_fp = fp;
 		_vfs.header = _hf;
-		//memset(&fp,0,2048L);
-		//fclose(fp); // don't close the file now.
 	}
-	
 
 	return status;
 }
