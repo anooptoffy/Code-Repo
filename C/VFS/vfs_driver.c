@@ -8,15 +8,10 @@ int main(int argc,char *argv[]){
 	char arr[100][100];
 	int i,status = 1;
 #ifdef DEBUG	
-	printf("\n[DEBUG] Welcome to new Virtual File System\n");
+	printf("\n[DEBUG] Welcome to new Virtual"
+			" File System\n");
 #endif	
 		
-	if(argc < 0){
-		printf("\n [ERROR] Insufficient number of arguments provided %d", argc);
-		info();
-	
-	}
-	else{
 		
 		_vfs.vfs_status = VFS_CLOSE;
 		info();
@@ -45,31 +40,36 @@ int main(int argc,char *argv[]){
 			if((strcmp(arr[1], "quit") == 0 ) ||
 					(strcmp(command, "quit") == 0 )){
 				if(_vfs.vfs_fp != NULL)
-					printf("\n[WARNING] Please unload the vfs before quitting");
+					printf("\n[WARNING] Please unload "
+						"the vfs before quitting");
 				else{
-					printf("\nQuitting the utility, Bye for now...");
+					printf("\nQuitting the utility, "
+							"Bye for now...");
 					break;
 				}
 			}
 			
 			else if(strcmp(arr[1], "create") == 0){
 				if(i <= 2){
-					printf("\n[WARNINGS] Please provide with the name of" 
-										"file system");
+					printf("\n[WARNINGS] Please provide "
+								"with the name of" 
+								"file system");
 					info();
 					//break;
 				}
 
 
 				if(_vfs.vfs_status == VFS_CLOSE){
-					printf("\n[INFO] Creating the Virtual File System ");
+					printf("\n[INFO] Creating the Virtual "
+							"File System ");
 					status  = vfs_create(arr[2]);
 					if(status == 0){
 						printf("\n[INFO] VFS creation Successfull ");	
 						//_vfs->vfs_status = VFS_OPEN;
 					}
 					else if(status == 1){
-						printf("\n[WARNING] The file system (%s) already" 
+						printf("\n[WARNING] The file system "
+									"(%s) already" 
 										" exists",arr[2]);
 					}
 				}
@@ -94,6 +94,12 @@ int main(int argc,char *argv[]){
 						printf("\n[INFO] Name of VFS is %s",_vfs.header.vfs_info.vfs_name);
 						printf("\n[INFO] Number of files is %d",_vfs.header.vfs_info.num_files);
 						printf("\n[INFO] Offset %ld", _vfs.header.vfs_info.offset);
+
+						printf("\n[INFO]  The file info");
+						for(int i = 0; i <_vfs.header.vfs_info.num_files; i++){
+							printf("\n[INFO] The name of file %d is : %s" , i+1,_vfs.header.vfs_files[i].fname);
+							printf("\n[INFO] The offset is : %ld",_vfs.header.vfs_files[i].offset);
+						}
 					}
 					else if(status == 1)
 					{
@@ -165,8 +171,6 @@ int main(int argc,char *argv[]){
 
 			
 		} 
-	}
-
 	printf("\n");
 	return 0;
 }

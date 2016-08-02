@@ -4,6 +4,7 @@ extern struct vfs _vfs;
 int vfs_extract(char *saved_name,char *name_with_path){
 	int status = 0;
 	FILE *fp;
+	char str[10000];
 
 #ifdef DEBUG
 		printf("\n[DEBUG] The file name to be searched %s",saved_name);
@@ -22,7 +23,7 @@ int vfs_extract(char *saved_name,char *name_with_path){
 #endif
 
 			fp = fopen("out.txt","w");
-			long offset = _vfs.header.vfs_files[i].offset - _vfs.header.vfs_files[i].file_size;
+			long offset = _vfs.header.vfs_files[i].offset;
 
 #ifdef DEBUG
 		printf("\n[DEBUG] Offset start %ld",offset );
@@ -30,15 +31,24 @@ int vfs_extract(char *saved_name,char *name_with_path){
 #endif
 
 			long size = _vfs.header.vfs_files[i].file_size;
-			
+			size_t bytes_read;
 			fseek(_vfs.vfs_fp, offset, SEEK_SET);
 			printf("\n");
-			while(size > 0)
-			{
+			// while(size > 0)
+			// {
 				
-				fputc(fgetc(_vfs.vfs_fp),fp);
-				size--;
-			}
+			// 	fputc(fgetc(_vfs.vfs_fp),fp);
+			// 	size--;
+			//}
+			bytes_read =  fread(&str,size,1,_vfs.vfs_fp);
+			str[size+1] = '\0';
+#ifdef DEBUG
+			printf("\n[INFO] The bytes read are %ld" , bytes_read);
+			printf("\n[INFO] The contents of the file are : ");
+			printf("\n[INFO] %s",str);
+#endif			
+
+			fwrite(&str,strlen(str),1,fp);
 			fclose(fp);
 		}
 	}

@@ -37,19 +37,15 @@ int vfs_save(char *name_with_path){
 #endif
 			if(_vfs.header.vfs_info.num_files == 0){
 				long offset = _vfs.header.vfs_info.offset;
+				offset++;
 #ifdef DEBUG
 				printf("\n[DEBUG] Offest value : %ld", offset);
 #endif
 				fseek(_vfs.vfs_fp, offset, SEEK_SET);	// setting the fp to the end of the file.
 				fwrite(&str,strlen(str),1,_vfs.vfs_fp);
-				_vf_file.offset = offset + sz;	// setting the offset of the file
+				_vf_file.offset = offset;	// setting the offset of the file, from where file info starts.
 				_vfs.header.vfs_files[0] = _vf_file;
-				//rewind(_vfs.vfs_fp);
-				fseek(_vfs.vfs_fp, 0L, SEEK_SET);
 				_vfs.header.vfs_info.num_files++;
-				//fwrite(&_vfs.header,sizeof(_vfs.header),1,_vfs.vfs_fp);
-				fwrite(&_vfs.header.vfs_info, sizeof(_vfs.header.vfs_info),1,_vfs.vfs_fp);
-				fwrite(&_vfs.header.vfs_files[0], sizeof(_vfs.header.vfs_files[0]),1, _vfs.vfs_fp);
 
 #ifdef DEBUG
 				printf("\n[DEBUG]The no of files in header is : %d", _vfs.header.vfs_info.num_files);
@@ -58,24 +54,25 @@ int vfs_save(char *name_with_path){
 			}
 			else{
 				long offset = _vfs.header.vfs_files[_vfs.header.vfs_info.num_files - 1].offset;
-				int n = _vfs.header.vfs_info.num_files++;
+#ifdef DEBUG
+				printf("\n[DEBUG] The offset value of previous file is %ld \n", offset );
+#endif				
+				offset = offset + _vfs.header.vfs_files[_vfs.header.vfs_info.num_files - 1].file_size;
+#ifdef DEBUG
+				printf("\n[DEBUG] The new offset value of previous file is %ld \n", offset );
+#endif	
+
+				offset++;
+				//int n = _vfs.header.vfs_info.num_files++;
+				
 #ifdef DEBUG
 				printf("\n[DEBUG] Offest value : %ld", offset);
 #endif
 				fseek(_vfs.vfs_fp, offset, SEEK_SET);	// setting the fp to the end of the file.
-				fwrite(&str,i,1,_vfs.vfs_fp);
-				_vf_file.offset = offset + sz;	// setting the offset of the file
-				_vfs.header.vfs_files[n - 1] = _vf_file;
-				//rewind(_vfs.vfs_fp);
-				fseek(_vfs.vfs_fp, 0L, SEEK_SET);
-				fwrite(&_vfs.header.vfs_info, sizeof(_vfs.header.vfs_info),1,_vfs.vfs_fp);
-				_vfs.header.vfs_files[n] = _vf_file;
-				for(int i = 0 ; i < n; i++)
-				{
-					fwrite(&_vfs.header.vfs_files[i], sizeof(_vfs.header.vfs_files[i]),1, _vfs.vfs_fp);
-				}
-
-				//fwrite(&_vfs.header,sizeof(_vfs.header),1,_vfs.vfs_fp);
+				fwrite(&str,strlen(str),1,_vfs.vfs_fp);
+				_vf_file.offset = offset;	// setting the offset of the file
+				_vfs.header.vfs_files[_vfs.header.vfs_info.num_files] = _vf_file;
+				_vfs.header.vfs_info.num_files++;
 			}
 		}
 		fclose(fp);

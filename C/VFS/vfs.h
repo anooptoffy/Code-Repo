@@ -27,7 +27,7 @@
 #define VFS_CLOSE 1
 
 struct vfs_file_info{
-        char fname[MAX_LEN];
+    char fname[MAX_LEN];
 	long offset;
 	long file_size;
 };

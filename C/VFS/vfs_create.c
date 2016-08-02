@@ -24,12 +24,12 @@ int vfs_create(char *name_with_path){
 		struct vfs_header_info _hf; 
 		strcpy(_vf.vfs_name,"My VFS");
 		_vf.num_files = 0;
-		_vf.offset = 1000; // assumption that header is saved till first 1000B
+		_vf.offset = 2048; // assumption that header is saved till first 1000B
 		_hf.vfs_info = _vf;
 		// _hf.vfs_files No file info added since its creation
 
-		fwrite(&_vf,sizeof(_vf),1,fp);
-		_vfs.vfs_status = VFS_OPEN; // commented since it is cause a bug that nake file pointer evaporate
+		//fwrite(&_vf,sizeof(_vf),1,fp);
+		_vfs.vfs_status = VFS_OPEN; 
 		_vfs.vfs_fp = fp;
 		_vfs.header = _hf;
 		//fclose(fp); // don't close the file now.

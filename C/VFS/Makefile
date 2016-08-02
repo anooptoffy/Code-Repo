@@ -13,4 +13,4 @@ vfs_driver : vfs_driver.o vfs_create.o vfs_utils.o vfs_save.o vfs_read.o
 	gcc -o vfs vfs_driver.o vfs_create.o vfs_utils.o vfs_save.o vfs_read.o
 
 clean :
-	rm vfs_driver.o vfs_create.o vfs_utils.o vfs vfs.h.gch core vfs_save.o *.v *.vfs vfs_read.o
+	rm vfs_driver.o vfs_create.o vfs_utils.o vfs vfs.h.gch core vfs_save.o *.v *.vfs vfs_read.o demo* out.*
