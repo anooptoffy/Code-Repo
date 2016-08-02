@@ -4,7 +4,7 @@ extern struct vfs _vfs;
 int vfs_extract(char *saved_name,char *name_with_path){
 	int status = 0;
 	FILE *fp;
-	char str[10000];
+	char *buffer;
 
 #ifdef DEBUG
 		printf("\n[DEBUG] The file name to be searched %s",saved_name);
@@ -33,22 +33,34 @@ int vfs_extract(char *saved_name,char *name_with_path){
 			long size = _vfs.header.vfs_files[i].file_size;
 			size_t bytes_read;
 			fseek(_vfs.vfs_fp, offset, SEEK_SET);
-			printf("\n");
-			// while(size > 0)
-			// {
-				
-			// 	fputc(fgetc(_vfs.vfs_fp),fp);
-			// 	size--;
-			//}
-			bytes_read =  fread(&str,size,1,_vfs.vfs_fp);
-			str[size+1] = '\0';
 #ifdef DEBUG
-			printf("\n[INFO] The bytes read are %ld" , bytes_read);
-			printf("\n[INFO] The contents of the file are : ");
-			printf("\n[INFO] %s",str);
+			printf("\n[INFO] Here1!");
 #endif			
 
-			fwrite(&str,strlen(str),1,fp);
+			printf("\n");
+			char c;
+			while(size > 0)
+			{
+				
+				//printf("%c",fgetc(_vfs.vfs_fp));
+				c = fgetc(_vfs.vfs_fp);
+				fputc(c,fp);
+				size--;
+			}
+// 			buffer = (char *)malloc(size * sizeof(char));
+// #ifdef DEBUG
+// 			printf("\n[INFO] Here2!");
+// #endif			
+
+// 			bytes_read =  fread(&buffer,size,1,_vfs.vfs_fp);
+// 			buffer[size] = '\0';
+// #ifdef DEBUG
+// 			printf("\n[INFO] The bytes read are %ld" , bytes_read);
+// 			printf("\n[INFO] The contents of the file are : ");
+// 			printf("\n[INFO] %s",buffer);
+// #endif			
+
+// 			fwrite(&buffer,size,1,fp);
 			fclose(fp);
 		}
 	}

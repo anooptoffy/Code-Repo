@@ -35,7 +35,7 @@ int vfs_open(char *name_with_path){  // load vfs
 		_vfs.header = _hf;
 		_vfs.vfs_status = VFS_OPEN;
 		fclose(fp);
-		fp = fopen(name_with_path, "a"); // just reopening after gettting the data structures populated.
+		fp = fopen(name_with_path, "a+"); // just reopening after gettting the data structures populated.
 		_vfs.vfs_fp = fp;
 		//fclose(fp); don't close this time close it only are the time of unloading.
 	}

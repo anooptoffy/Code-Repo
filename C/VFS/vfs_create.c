@@ -32,6 +32,7 @@ int vfs_create(char *name_with_path){
 		_vfs.vfs_status = VFS_OPEN; 
 		_vfs.vfs_fp = fp;
 		_vfs.header = _hf;
+		//memset(&fp,0,2048L);
 		//fclose(fp); // don't close the file now.
 	}
 	
