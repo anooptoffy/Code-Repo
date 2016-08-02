@@ -20,16 +20,6 @@ int vfs_save(char *name_with_path){
 			long sz = ftell(fp);
 			_vf_file.file_size = sz; // file size
 			rewind(fp);
-			char str[100000],ch;
-			int i = 0;
-			ch = fgetc(fp);
-			while(ch != EOF){
-				
-				str[i] = ch;
-				i++;
-				ch = fgetc(fp);
-			}
-			str[i] = '\0';
 
 
 #ifdef DEBUG
@@ -41,8 +31,7 @@ int vfs_save(char *name_with_path){
 #ifdef DEBUG
 				printf("\n[DEBUG] Offest value : %ld", offset);
 #endif
-				fseek(_vfs.vfs_fp, offset, SEEK_SET);	// setting the fp to the end of the file.
-				fwrite(&str,strlen(str),1,_vfs.vfs_fp);
+
 				_vf_file.offset = offset;	// setting the offset of the file, from where file info starts.
 				_vfs.header.vfs_files[0] = _vf_file;
 				_vfs.header.vfs_info.num_files++;
@@ -68,8 +57,6 @@ int vfs_save(char *name_with_path){
 #ifdef DEBUG
 				printf("\n[DEBUG] Offest value : %ld", offset);
 #endif
-				fseek(_vfs.vfs_fp, offset, SEEK_SET);	// setting the fp to the end of the file.
-				fwrite(&str,strlen(str),1,_vfs.vfs_fp);
 				_vf_file.offset = offset;	// setting the offset of the file
 				_vfs.header.vfs_files[_vfs.header.vfs_info.num_files] = _vf_file;
 				_vfs.header.vfs_info.num_files++;

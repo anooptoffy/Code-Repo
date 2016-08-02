@@ -1,5 +1,7 @@
 #include "vfs.h"
 
+// implement bsearch here
+
 extern struct vfs _vfs;
 int vfs_extract(char *saved_name,char *name_with_path){
 	int status = 0;
