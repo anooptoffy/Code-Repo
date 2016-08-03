@@ -64,6 +64,7 @@ int vfs_save(char *name_with_path);
 int vfs_close();
 int vfs_extract(char *saved_name,char *name_with_path);
 void info();
+void info_start();
 int vfs_unload(char *name_with_path);
 
 #endif

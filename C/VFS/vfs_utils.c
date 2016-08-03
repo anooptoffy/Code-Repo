@@ -52,6 +52,14 @@ int vfs_unload(char *name_with_path){
 	long offset, size;
 	size_t bytes_read;
 
+#ifdef DEBUG
+	printf("\n[INFO] The name of file system to unload is %s ", name_with_path);
+#endif
+
+	if(_vfs.vfs_status == VFS_CLOSE){
+		return 1;
+	}
+
 	fclose(_vfs.vfs_fp); //closing this pointer.
 	fp =  fopen(name_with_path,"w");
 	fseek(fp, 0L, SEEK_SET); // seeking to begining of the file. NOT WORKING due to
@@ -67,14 +75,14 @@ int vfs_unload(char *name_with_path){
 			}
 
 #ifdef DEBUG
-			printf("\n[INFO] Finished with writing the header info and file header info");
+			printf("\n[DEBUG] Finished with writing the header info and file header info");
 #endif			
 
 				for(int i = 0 ; i < _vfs.header.vfs_info.num_files; i++)
 				{
 
 #ifdef DEBUG
-					printf("\n[INFO]  The file name is : %s", _vfs.header.vfs_files[i].fname);
+					printf("\n[DEBUG]  The file name is : %s", _vfs.header.vfs_files[i].fname);
 #endif					
 
 					
@@ -100,7 +108,7 @@ int vfs_unload(char *name_with_path){
 					str[j] = '\0';
 
 #ifdef DEBUG
-					printf("\n[INFO] Contents of the file : %s", str);
+					printf("\n[DEBUG] Contents of the file : %s", str);
 #endif					
 					fseek(fp, offset, SEEK_SET);	// setting the fp to the end of the file.
 					fwrite(&str,strlen(str),1,fp);
@@ -114,13 +122,27 @@ int vfs_unload(char *name_with_path){
 
 void info(){
 
-	printf("\n The command you are executing is not valid, Execute one from the following list of commands. \n");
-		printf("	vfs create <file_system_name> [Optional] <size> \n \
+	printf("\n [ERROR] The command you are executing is not valid, Execute one from the following list of commands. \n");
+		printf("	vfs create <file_system_name> \n \
 	vfs open <file_system_name/file_system_path> \n \
 	vfs save <file_name_to_be_saved>\n \
-	vfs close <file_system_name>\n \
-	vfs extract <file_system_name> [Optional] <file_info>\n \
+	vfs close \n \
+	vfs extract <file_name_to_be_extracted>\n \
 	vfs status \n \
 	quit \n");
 
 }
+
+void info_start(){
+
+	printf("\n Execute one from the following list of commands. \n");
+		printf("	vfs create <file_system_name> \n \
+	vfs open <file_system_name/file_system_path> \n \
+	vfs save <file_name_to_be_saved> \n \
+	vfs close  \n \
+	vfs extract <file_name_to_be_extracted> \n \
+	vfs status \n \
+	quit \n");
+
+}
+
