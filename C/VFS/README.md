@@ -5,13 +5,14 @@ TODO : Implement a VFS for storing the files and related information.
 ##working
 
  The command you are executing is not valid, Execute one from the following list of commands. 
-...	vfs create <file_system_name> [Optional] <size> 
-... 	vfs open <file_system_name/file_system_path> 
-... 	vfs save <file_name_to_be_saved>
-... 	vfs close <file_system_name>
-... 	vfs extract <file_system_name> [Optional] <file_info>
-...	vfs status 
-... 	quit 
+ 
+    	vfs create <file_system_name> [Optional] <size> 
+    	vfs open <file_system_name/file_system_path> 
+    	vfs save <file_name_to_be_saved>
+    	vfs close <file_system_name>
+    	vfs extract <file_system_name> [Optional] <file_info>
+    	vfs status 
+    	quit 
 
 vfs@do>> :  
 
@@ -29,8 +30,9 @@ vfs@do>> :
 
 ##Compilation
 
-...make all
-....	// to compile without debug logs
-... make debug
-....	// to compile with debug logs
+make all
+// to compile without debug logs
+make debug
+// to compile with debug logs
+
 2. run using ./vfs command
