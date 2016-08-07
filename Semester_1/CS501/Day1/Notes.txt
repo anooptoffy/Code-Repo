@@ -1,0 +1,21 @@
+Education is for life, not for your first job.
+
+Introduction
+---------------
+Grading Schemes
+CLRS Book 
+NPTEL, Naveen Garg, IITD
+
+
+What is an Algorithm?
+
+It is a finite Sequence of instructions.
+
+1.Hilberts 10th problem
+	https://en.wikipedia.org/wiki/Hilbert%27s_tenth_problem
+
+2.Fermats Last Theorem
+
+3.Halting Problem
+
+
