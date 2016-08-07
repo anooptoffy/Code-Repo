@@ -1,0 +1,5 @@
+ubuntu@ubuntu$ time ./exercise1 
+-1
+real	49m28.719s
+user	49m26.052s
+sys	0m2.220s
