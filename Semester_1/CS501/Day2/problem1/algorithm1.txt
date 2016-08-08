@@ -1,0 +1,6 @@
+$ time ./a.out < input.txt 
+55
+real	0m1.109s
+user	0m1.104s
+sys	0m0.000s
+
