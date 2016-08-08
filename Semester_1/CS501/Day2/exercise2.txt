@@ -1,0 +1,13 @@
+1. Get the process id
+
+anoop@anoop-X555LJ:~$ ps ax|grep exercise
+27341 pts/17   S+     0:00 ./exercise2
+27345 pts/18   S+     0:00 grep --color=auto exercise
+
+2. Get the memory used
+
+http://stackoverflow.com/questions/3853655/in-linux-how-to-tell-how-much-memory-processes-are-using
+
+anoop@anoop-X555LJ:~$ echo 0 $(awk '/Private/ {print "+", $2}' /proc/`pidof exercise2`/smaps) | bc
+4000
+
