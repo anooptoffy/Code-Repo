@@ -51,10 +51,6 @@ int (*MM2(int A[][2], int B[][2]))[2]{
 	return C;
 }
 
-void divideby2(int *N){ // integer array passed
-	if(last > first)
-		last--;	
-}
 
 int power(int A[][2], int *N){ // the no of digits in N is 10^6 // replace int N by int N[]
 	int  Y[2][2] = {{1,0},{0,1}};
@@ -72,10 +68,10 @@ int power(int A[][2], int *N){ // the no of digits in N is 10^6 // replace int N
 	return y[1][0];
 }
 
-int main(){
+int main(int argc, char *argv[]){
 	
 	FILE *fp;
-	fp = fopen("data_binary.in","r");
+	fp = fopen(argv[1],"r");
 	for(int i = 0; i < l; i++)
 	{
 		fscanf(fp,"%1d",&N[i]);
