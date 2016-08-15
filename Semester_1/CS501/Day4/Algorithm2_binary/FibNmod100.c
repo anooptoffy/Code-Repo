@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <ctype.h>
 /*
  * Verification can be done here : http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibmaths.html#fibmod
  * Tutorial : https://www.youtube.com/watch?annotation_id=annotation_146092965&feature=iv&list=PL2_aWCzGMAwLZp6LMUKI3cc7pgGsasm2_&src_vid=_j5lhHWkbnQ&v=sHcnvZA2u88 
@@ -9,7 +11,7 @@
  */
 
 int first, last;
-int N[1000000],l = 1000000; // l specify the number of digit in n of Fib(n), here lets take 10^6
+int N[1000000],l = 10; // l specify the number of digit in n of Fib(n), here lets take 10^6
 
 // returns a pointer to integer array of size 2
 int (*MM(int A[][2], int B[][2]))[2]{  
@@ -69,9 +71,10 @@ int power(int A[][2], int *N){ // the no of digits in N is 10^6 // replace int N
 }
 
 int main(int argc, char *argv[]){
-	
+	int p = atoi(argv[2]);	
 	FILE *fp;
 	fp = fopen(argv[1],"r");
+	l = pow(l,p);
 	for(int i = 0; i < l; i++)
 	{
 		fscanf(fp,"%1d",&N[i]);
