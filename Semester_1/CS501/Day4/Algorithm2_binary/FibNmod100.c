@@ -61,13 +61,13 @@ int power(int A[][2], int *N){ // the no of digits in N is 10^6 // replace int N
 	int  (*y)[2],(*x)[2];
 	x = A;
 	y = Y;
-	while(N[first] > 0) // need to alter this N[first] > 0
+	while(first<last) // need to alter this N[first] > 0
 	{
 		if(N[last] != 0) // N[last] % 2 != 0
 			y= MM2(y,x);
 		x = MM(x,x);
 		//N = N / 2; // need to find this divideby2() ; complexity is 0(d) where d is no of digits here d = log N ie. 0(lg(N))
-		divideby2(N);
+		last--;
 	}
 	return y[1][0];
 }
