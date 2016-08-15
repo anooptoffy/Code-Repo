@@ -9,7 +9,7 @@
  */
 
 int first, last;
-int N[1000000],l = 3; // l specify the number of digit in n of Fib(n), here lets take 3
+int N[1000000],l = 1000000; // l specify the number of digit in n of Fib(n), here lets take 10^6
 
 // returns a pointer to integer array of size 2
 int (*MM(int A[][2], int B[][2]))[2]{  
@@ -103,38 +103,9 @@ int main(){
 	int (*a)[2];
 	a = A;
 
-	// here we are finding the first 300 of fib(n)mod100 numbers
-	//for(int i =0 ;i < 300; i++)
-	//	printf(" %d",power(a,i));
-
-
-	// make the call here
-	N[0] = 2;
-	N[1] = 9;
-	N[2] = 8;
 	printf(" %d",power(a,N));
 	
-/*	divideby2(N);
-	printf("\n");
-	for(int i = first; i <= last; i++)
-	{
-		printf("%d",N[i]);
-	}
-
-	divideby2(N);
-	printf("\n");
-	for(int i = first; i <= last; i++)
-	{
-		printf("%d",N[i]);
-	}
-
-	divideby2(N);
-	printf("\n");
-	for(int i = first; i <= last; i++)
-	{
-		printf("%d",N[i]);
-	}
-*/	
+	
 	printf("\n");
 	fclose(fp);
 	return 0;
