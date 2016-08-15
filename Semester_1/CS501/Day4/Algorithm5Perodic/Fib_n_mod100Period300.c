@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
 
+int tempp[300];
+int l = 10;
+int N[1000000];
 // returns a pointer to integer array of size 2
 int (*MM(int A[][2], int B[][2]))[2]{  
 	
@@ -56,12 +61,33 @@ int power(int A[][2], int N){
 	return y[1][0];
 }
 
-int main(){
+int main(int argc, char *argv[]){
 	int A[2][2] = {{1,1},{1,0}};
 	int (*a)[2];
 	a = A;
-	for(int i =0 ;i < 300; i++)
-		printf(" %d",power(a,i));
+	// Stores the period of numbers m=100 p=300. 
+	// Hence we stores first 300 fib numbers that repeats with period 300
+	// Later change the logic for all m. not specific for 100. 
+	// Break the loop when tempp[i-1] == 0 && tempp[i] == 1
+	// return period p as i - 2
+	for(int i =0 ;i < 300; i++){
+		tempp[i] = power(a,i);
+		printf(" %d",tempp[i]);
+	}
+	
+	FILE *fp;
+	fp = fopen(argv[1],"r");
+	int p;
+	p = atoi(argv[2]);
+	l = pow(l,p); // 10^p number of digits in the number
+
+	for(int i = 0; i < l; i++)
+	{
+		fscanf(fp,"%1d",&N[i]);
+	}	
+	
+	// Adding logic for F(n%p) here tempp(N%p)
+
 	printf("\n");
 	return 0;
 }
