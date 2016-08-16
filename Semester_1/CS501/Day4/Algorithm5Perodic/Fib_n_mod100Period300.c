@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <math.h>
 
-int tempp[300];
+int tempp[300], first, last;
 int l = 10;
 int N[1000000];
 // returns a pointer to integer array of size 2
@@ -61,9 +61,27 @@ int power(int A[][2], int N){
 	return y[1][0];
 }
 
+int nmodp(int *N, int p){
+	int temp = 0;
+        int i,j;
+	i = first;
+	j = last;		
+		
+	while(i<j){
+
+		temp = temp*10 + N[i];
+		if(temp >= p)
+		{
+			temp = temp % p;
+		}
+		i++;
+	}
+	return temp;
+}
+
 int main(int argc, char *argv[]){
 	int A[2][2] = {{1,1},{1,0}};
-	int (*a)[2];
+	int (*a)[2], period = 300;// later make this generic, m
 	a = A;
 	// Stores the period of numbers m=100 p=300. 
 	// Hence we stores first 300 fib numbers that repeats with period 300
@@ -85,8 +103,12 @@ int main(int argc, char *argv[]){
 	{
 		fscanf(fp,"%1d",&N[i]);
 	}	
-	
+	first = 0;
+	last = l - 1;
 	// Adding logic for F(n%p) here tempp(N%p)
+	int rem;
+	rem = nmodp(N,period);	
+	printf("\n%d",tempp[rem]);
 
 	printf("\n");
 	return 0;
