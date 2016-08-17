@@ -11,13 +11,6 @@
  *
  */
 
-void swap(int *a, int *b){
-	int temp;
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 void insertionSort(int *A,int sz){
 	for(int j = 1; j < sz; j++){
 		int t = A[j];
