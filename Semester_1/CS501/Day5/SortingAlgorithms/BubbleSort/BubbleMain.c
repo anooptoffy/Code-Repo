@@ -9,14 +9,10 @@ void swap(int *a, int *b){
 }
 
 void bubbleSort(int *A,int sz){
-	for(int j = 0; j < sz; j++){
-		for(int i = 0; i < sz - 1 - j ; i++)
-		{
-			if(A[i] > A[i+1]){
-				swap(&A[i],&A[i+1]);
-			}
-		}
-	}
+	for(int j = 0; j < sz; j++)
+		for(int i = 0; i < sz - 1 - j ; i++)	
+			if(A[i] > A[i+1])
+				swap(&A[i],&A[i+1]);					
 }
 
 int main(){
