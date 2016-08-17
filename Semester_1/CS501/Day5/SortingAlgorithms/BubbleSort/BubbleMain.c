@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/*
+ *  Bubble Sort
+ *
+ *  Number of comparisons is 0(n^2)
+ *  NUmber of Swaps is 0(n^2)
+ *
+ *
+ *  Is it possible to reduce the number of swaps? Yes, hence selection sort.
+ *
+ */
 void swap(int *a, int *b){
 	int temp;
 	temp = *a;
