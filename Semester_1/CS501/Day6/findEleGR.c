@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <limits.h>
+
 /*
  * Chapter 9, Order Statistic and finding median, 
  * Discussion about "Selection Problem"
  *
- * Given an element x, find the rank of x 
+ * Given an rank r, find element x ie. of rank r 
  * Rank(x) = r;
  * Complext O(nlg(n))
  * Can we make it linear ? ie. without explicit sorting.
