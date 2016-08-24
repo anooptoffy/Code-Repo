@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 
 /*
@@ -35,7 +37,8 @@ void swap(int *a,int *b){
 
 
 int pivot(int a[], int i, int j){
-	return a[j];
+	int pivot =  i + rand() % (j - i +1);
+	return pivot;
 }
 
 int partition(int A[], int f, int l, int pivot){
@@ -43,18 +46,47 @@ int partition(int A[], int f, int l, int pivot){
 	int i,j;
 	i = f;
 	j = l;
-	while( i <= j)
+	swap(&A[pivot],&A[j]);
+	while( i < j)
 	{
 
-		while(A[i] <= pivot) i++;
-		while(A[j] > pivot) j--;
+		while(A[i] <= A[pivot]) i++;
+		while(A[j] > A[pivot]) j--;
 		if(i <= j)
 			swap(&A[i],&A[j]);
 		i++;
 		j--;
-	}	
+	}
+	swap(&A[j],&A[l]);	
 	return j;
 }
+
+
+
+// int partition(int arr[], int start, int end, int pos)
+// {
+//         if (start == end)
+//                 return start;
+
+//         int i, j;
+//         i = start - 1;
+//         j = start;
+//         //pos = pivot(arr, start, end);
+//         swap(&arr[pos], &arr[end]);
+//         while (j < end) 
+//         {
+//                 if (arr[j] <= arr[end]) 
+//                 {
+//                         i = i + 1;
+//                         swap(&arr[i], &arr[j]);
+//                 }
+//                 j++;
+//         }
+//         i = i + 1;
+//         swap(&arr[i], &arr[end]);
+//         return i;
+// }
+
 
 int findRank(int a[], int i, int j, int r){
 	int p = pivot(a,i,j); // modify it with goodPivot to get O(n) algorithm TODO
@@ -65,7 +97,7 @@ int findRank(int a[], int i, int j, int r){
 	else if( r < j-k+1)
 		return findRank(a,k+1,j,r);
 	else
-		return findRank(a,i,k,r-j+k);
+		return findRank(a,i,k,r-j+k-1);
 }	
 
 int main(int argc, char const *argv[])
