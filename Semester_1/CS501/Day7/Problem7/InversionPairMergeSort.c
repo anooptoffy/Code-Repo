@@ -9,6 +9,8 @@
  *
  *  Unsorted
  *  Links : http://www.geeksforgeeks.org/counting-inversions/
+ *  
+ *  Added the sorting logic, just to verify if the algorithm is working correctly
  */
 
 
@@ -20,8 +22,18 @@ int comparator(const void *a, const void *b){
 
 int MIP(int a[], int f, int mid, int l){
 	int c = 0;
-	if(a[f] > a[l])
-		c = c + mid - f + l;
+	int i,j;
+	i = f;
+	j = l;
+	while(i <= j){
+		if(a[i] <= a[j]){
+			i++;
+		}
+		else{
+			j--;
+			c++;
+		}
+	}
 	return c;
 }
 
