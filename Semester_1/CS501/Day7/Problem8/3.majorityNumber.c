@@ -81,5 +81,27 @@ int main(int argc, char const *argv[])
 
 	printf("Possibilities for Majority element are  : %d %d\n", a[(size - 1) - chanceOne + 1], a[(size - 1) - chanceTwo + 1] );
 
+
+	int ele1 = a[(size - 1) - chanceOne + 1];
+	int ele2 = a[(size - 1) - chanceTwo + 1];
+	int count1 = 0, count2 = 0;
+	for(int i = 1; i < size ; i++){
+		if(a[i] == ele1){
+			count1++;
+		}
+	}
+
+	if(count1 >= ((size/3) + 1))
+		printf("Majority element can be  %d\n", ele1);
+
+	for(int i = 1; i < size ; i++){
+		if(a[i] == ele2){
+			count2++;
+		}
+	}
+
+	if(count2 >= ((size/3) + 1))
+		printf("Majority element can be  %d\n", ele2);
+
 	return 0;
 }
