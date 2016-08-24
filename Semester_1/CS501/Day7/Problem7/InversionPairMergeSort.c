@@ -12,6 +12,8 @@
  *  Links : http://www.geeksforgeeks.org/counting-inversions/
  *  
  *  Added the sorting logic, just to verify if the algorithm is working correctly
+ *  For sorted desc = n(n-1)/2
+ *  For sorted asc = 0
  */
 
 
@@ -26,8 +28,8 @@ int MIP(int a[], int f, int mid, int l){
 	int a1, a2;
 	a1 = mid - f + 1;
 	a2 = l - mid;
-	//a1+=2;
-	//a2+=2;
+	a1++;
+	a2++;
 	int i,j;
 	int L[a1], R[a2];
 
@@ -37,7 +39,7 @@ int MIP(int a[], int f, int mid, int l){
 	}
 	printf("\n");
 	
-	L[i + 1] = INT_MAX;
+	//L[i + 1] = INT_MAX;
 
 	for(j = 1 ; j <= a2; j++){
 		R[j] = a[ mid + j];
@@ -45,7 +47,7 @@ int MIP(int a[], int f, int mid, int l){
 	}
 	printf("\n");
 
-	R[j + 1] = INT_MAX;
+	//R[j + 1] = INT_MAX;
 	
 	i = 1;
 	j = 1;
@@ -55,8 +57,7 @@ int MIP(int a[], int f, int mid, int l){
 		}
 		else{
 			j--;
-			c += mid - i;
-			
+			c += mid - i;			
 		}
 	}
 	return c;
@@ -77,7 +78,7 @@ int main(int argc, char const *argv[])
 {
 	int a[] = {4, 5, 2, 6, 1};
 	int size = sizeof(a)/sizeof(a[0]);
-	// qsort((void *)a,size, sizeof(a[0]),comparator);
+	 qsort((void *)a,size, sizeof(a[0]),comparator);
 	// for (int i = 0; i < size; ++i)
 	//  {
 	//  	printf("%d ", a[i]);
