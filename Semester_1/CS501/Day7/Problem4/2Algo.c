@@ -2,11 +2,12 @@
 #include <stdlib.h>
 
 /*
- *
+ * Wrong logic, incomplete [INGORE]
  *
  * Sell Stock Problem
- * Max(aj - i) where i < j
+ * Max(aj - ai) where i < j
  *
+ * Page 68 CLRS
  */
 
 int comparator(const void *l, const void *r){
@@ -18,24 +19,26 @@ int comparator(const void *l, const void *r){
 
 
 int main(int argc, char *argv[]){
-	int a[] = {3, 2, 5, 6, 11, 13, 40, 66, 34, 12, 90, 100, 78, 44, 34, 22, 25};
+	int a[] = {10, 11, 7, 10, 6};
 	int size = sizeof(a)/sizeof(a[0]);
 	//int count = 0;
-	qsort((void *)a, size, sizeof(a[0]), comparator); // using a increasing sequence
+	//qsort((void *)a, size, sizeof(a[0]), comparator); // using a increasing sequence
 
-	for(int i = 0; i < size; i++)
-		printf("%d ", a[i]);
-	printf("\n");
+	// for(int i = 0; i < size; i++)
+	// 	printf("%d ", a[i]);
+	// printf("\n");
 
-	int i = 0, max = a[size-1] - a[0];
+	int i = 0, max = a[1] - a[0];
 	for(int j = 1; j < size ; j++)
 	{
 		if(a[i] - a[j] > max)
 			max= a[i] - a[j];
-		if(a[j] < a[i])
-			i = j;
+			{
+				if(a[j] < a[i])
+				i = j;
+			}
 	}
 
-	printf("\ni is %d, max is %d\n", i, max);
+	printf("\n[When to buy] Day i is %d, price is %d\n", i, a[i]);
 	return 0;
 }
