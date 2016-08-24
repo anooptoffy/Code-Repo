@@ -11,7 +11,6 @@
  *  Links : http://www.geeksforgeeks.org/counting-inversions/
  */
 
-int c;
 
 int comparator(const void *a, const void *b){
 	int f = *(int *)a;
@@ -20,30 +19,34 @@ int comparator(const void *a, const void *b){
 }
 
 int MIP(int a[], int f, int mid, int l){
+	int c = 0;
 	if(a[f] > a[l])
 		c = c + mid - f + l;
+	return c;
 }
 
 int IP(int a[], int i, int j){
+	int invCount = 0;
 	if(i < j){
 		int mid = (i+j)/2;
-		//IP(a,i,mid);
-		//IP(a,mid+1,j);
-		MIP(a,i,mid,j);
+		invCount = IP(a,i,mid);
+		invCount += IP(a,mid+1,j);
+		invCount += MIP(a,i,mid,j);
 	}
+	return invCount;
 }
 
 int main(int argc, char const *argv[])
 {
 	int a[] = {4, 5, 2, 6, 1};
 	int size = sizeof(a)/sizeof(a[0]);
-	qsort((void *)a,size, sizeof(a[0]),comparator);
-	for (int i = 0; i < size; ++i)
-	{
-		printf("%d ", a[i]);
-	}
-	IP(a,0,size - 1);
-	printf("\nThe number of inversion pairs are, %d\n", c);
+	// qsort((void *)a,size, sizeof(a[0]),comparator);
+	// for (int i = 0; i < size; ++i)
+	// {
+	// 	printf("%d ", a[i]);
+	// }
+	
+	printf("\nThe number of inversion pairs are, %d\n",IP(a,0,size - 1));
 
 	return 0;
 }
