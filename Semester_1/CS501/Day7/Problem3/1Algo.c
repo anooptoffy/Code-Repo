@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 	int max = 0;
 	for(int i = 0; i < size; i++)
 		for(int j = i+1; j < size; j++)
-			if(abs(a[i] - a[j] > max))
+			if(abs(a[i] - a[j]) > max)
 				max = abs(a[i] - a[j]);
 	printf("Max Gap is %d\n",max);
 	return 0;
