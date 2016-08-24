@@ -12,7 +12,7 @@
  *
  * 1. http://stackoverflow.com/questions/4325200/find-the-majority-element-in-array
  * 2. http://www.geeksforgeeks.org/majority-element/ 
- * 3. 
+ * 3. https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm
  *
  */
 
