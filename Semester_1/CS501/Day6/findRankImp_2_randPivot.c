@@ -18,10 +18,11 @@
  * ie. find a random rank and try finding the element with rank R.
  * 
  * Randomized Version of the pivot.
- *
+ * 
+ * Random number generation : http://stackoverflow.com/questions/1608181/unique-random-numbers-in-an-integer-array-in-the-c-programming-language
  */ 
 
-int A[1000000], B[10000]; // A stores numbers and B stores ranks. 
+
 
 void swap(int *a,int *b){
 	int temp;
@@ -48,16 +49,14 @@ int partition(int *A, int f, int l, int pivot){
 	return j + 1;
 }
 
-int randomPivot(int *arr, int i, int j){
-	time_t t;
-	srand((unsigned) time(&t));
-	return arr[rand() % 10000];
+int pivot(int *arr, int i, int j){
+	return arr[j];
 }
 
 int findRank(int *arr, int i, int j, int r){
 	int p, k;
 	if(i < j){
-		p = randomPivot(arr,i,j);
+		p = pivot(arr,i,j);
 		//printf("\n Pivot is : %d",p);	
 		k = partition(arr,i,j,p);
 		//printf("\n Position of pivot %d, is %d",p,k);
@@ -70,39 +69,48 @@ int findRank(int *arr, int i, int j, int r){
 	}
 }
 
-void randomNumbers(int size){
-	long int i,n;	
+void randomNumbers(int *A, int n){	
 	time_t t;
-	n = pow(10,size); // 10^6
 	srand((unsigned) time(&t));
-	for(i = 0; i < n; i++){
-		A[i] = rand() % 1000000;
+	for(int i = 0; i < n; i++){
+		A[i] = rand() % n;
 	}
-	//printf("\nCount %ld",i);
 }
 
-void randomRanks(int size){
-	long int i,n;	
+void randomRanks(int *B){
 	time_t t;
-	n = pow(10,size); // 10^4
 	srand((unsigned) time(&t));
-	for(i = 0; i < n; i++){
-		B[i] = rand() % 10000;
+	for(int i = 0; i < m; i++){
+		B[i] = rand() % n;
 	}
 }
 
 int main(int argc, char *argv[]){
-	//int a[] = {10, 30, 60, 100, 1, 2, 7, 9, 80, 40, 55, 22, 99}; 
+	
+	int A[1000000], B[10000],m ,n; // A stores numbers and B stores ranks. 
+
+	int a[] = {10, 30, 60, 100, 1, 2, 7, 9, 80, 40, 55, 22, 99}; 
 	//Sorting looks : 1, 2, 7, 9, 10, 22, 30, 40, 55, 60, 80, 99, 100
-        long size = sizeof(A)/sizeof(A[0]);
+        int size = sizeof(a)/sizeof(a[0]);
 	int rank = 7;
 	//printf("\n Array size : %d", size);
 	//printf("\n Last element : %d", a[size - 1]);
-	
-	randomNumbers(6);
-	randomRanks(4);
-        printf("\n The element with rank %d is %d", rank, findRank(A ,0 ,size -  1, rank));
+        printf("\n The element with rank %d is %d", rank, findRank(a ,0 ,size -  1, rank));
         printf("\n");
+	
+	n = 1000;
+	m = 100;
+	printf("\n\n\n\n\n");
+	randomNumbers(A);
+	for(int i = 0; i < n ;i++)
+		printf("%d ",A[i]);
 
+	printf("\n\n\n\n\n");
+	randomRanks(B);
+	for(int i = 0; i < m ;i++)
+		printf("%d ",B[i]);
+
+	printf("\n\n\n\n\n");
+	printf("\n The element with rank %d is %d", rank, findRank(A ,0 ,size -  1, rank));
 	return 0;
 }

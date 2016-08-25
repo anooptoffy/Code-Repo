@@ -8,7 +8,7 @@ int main(){
 	FILE *fp;
 	fp = fopen("data.in","w");
 	time_t t;
-	n = 1000000;
+	n = 1000000; // 10^6
 	srand((unsigned) time(&t));
 	for(i = 0; i < n; i++){
 		fprintf(fp,"%d",rand() % 10);

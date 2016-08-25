@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
 	}
 	first = 0;
 	last = l - 1;
-	N[first] = 1; // because it should be 1
+	//N[first] = 1; // because it should be 1
 	//exit(0);
 
 	int A[2][2] = {{1,1},{1,0}};

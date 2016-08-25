@@ -50,7 +50,7 @@ int quicksort(int *A,int f, int l){
 
 int main(){
 	printf("\n");
-	int a[] = { 2, 4, 1, 55, 66, 7, 90 ,101};
+	int a[] = {  4, 1, 55, 66, 7, 90 ,101, 12};
 	int size = sizeof(a)/sizeof(a[0]);
 	//exit(0);
 	quicksort(a,0,size-1);
