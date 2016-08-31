@@ -4,7 +4,7 @@
 #include <limits.h>
 #include <ctype.h>
 
-// TODO - DONE
+// TODO
 
 /*
  * Maximum subarray problem. Such that sub array of length l
@@ -18,7 +18,7 @@
  *  Atleast l http://stackoverflow.com/questions/7861387/maximum-contiguous-subsequence-sum-of-at-least-length-l
  *  Atmost  l
  *
- * Atleast l
+ * Atmost l
  * 
  * Can it be solved in linear time ? O(n)
  */
@@ -37,32 +37,20 @@ int main(int argc, char const *argv[])
 	{
 		sumL += a[i];
 	}
-
 	maxSum = sumL;
-	int currentSum = sumL;
-
 	for (int i = l ; i < size; ++i)
 	{
-		if (currentSum < 0)
-		{
-			/* code */
-			currentSum =  currentSum - a[i-l] + a[i];
-		}
-		else
-			currentSum += a[i];
 		/* code */
-		
+		sumL =  sumL - a[i-l] + a[i];
 
-		if(currentSum > maxSum){
-			maxSum = currentSum;
+		if(sumL > maxSum){
+			maxSum = sumL;
 		}
-
-
 
 	}
 
 
-	printf("Maximum sum of length > %d is %d\n", l, maxSum );
+	printf("Maximum sum of length %d is %d\n", l, maxSum );
 	return 0;
 
 }
