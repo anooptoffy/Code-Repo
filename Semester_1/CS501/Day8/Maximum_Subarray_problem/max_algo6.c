@@ -26,17 +26,10 @@ int main(int argc, char const *argv[])
 	int a[] = {-5, -1, 2, -3, 0, -3, 3};
 	int size = sizeof(a)/sizeof(a[0]);
 
+
 	int maxSum = 0, l = 3;
 
-	for(int i = 0; i < size; i++){
-		int sum = 0;
-		for(int j = i ; j <= i + l; j++){
-				sum += a[j];
-		}
-		if(sum > maxSum)
-			maxSum = sum;
-	}
 
-	printf("Maximum Sum of length %d is %d\n",l, maxSum );
 	return 0;
+
 }
