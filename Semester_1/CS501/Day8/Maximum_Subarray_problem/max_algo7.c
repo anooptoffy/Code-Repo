@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -16,9 +17,9 @@
  *  Atleast l http://stackoverflow.com/questions/7861387/maximum-contiguous-subsequence-sum-of-at-least-length-l
  *  Atmost  l
  *
- * Exactly l , O(n) time
+ * Atleast l
  * 
- * 
+ * Can it be solved in linear time ? O(n)
  */
 
 int main(int argc, char const *argv[])
