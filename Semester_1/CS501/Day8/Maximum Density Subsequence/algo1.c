@@ -7,7 +7,7 @@
 
 /*
  * Maximum Density Subsequence
- *
+ * O(n)
  */
 
 int main(int argc, char const *argv[])
