@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-// TODO
+// TODO - DONE
 
 /*
  * Smallest subarray contains all the numbers 1,2....k atleast once
