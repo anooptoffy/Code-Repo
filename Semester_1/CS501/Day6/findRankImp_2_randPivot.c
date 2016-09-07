@@ -32,49 +32,42 @@ void swap(int *a,int *b){
 	*b = temp;
 }
 
-int partition(int *A, int f, int l, int pivot){
-
-	int i,j;
-	i = f;
-	swap(&A[pivot],&A[l]);
-	j = l - 1;
-	
-	while( i < j)
-	{
-
-		while(A[i] <= A[pivot]) i++;
-		while(A[j] > A[pivot]) j--;
-		if(i <= j){
-			swap(&A[i],&A[j]);
-			i++;
-		}		
-	}
-	j++;
-	swap(&A[j],&A[l]);	
-	return j;
+int partition (int arr[], int l, int h, int p)
+{
+    int x = arr[p];
+    swap(&arr[p],&arr[h]); // swapping the pivot with the last index
+    int i = l - 1;
+ 
+    for (int j = l; j <= h- 1; j++)
+    {
+        if (arr[j] <= x)
+        {
+            i++;
+            swap (&arr[i], &arr[j]);
+        }
+    }
+    swap (&arr[i + 1], &arr[h]);
+    return (i + 1);
 }
 
 // Taking a random pivot instead of a fixed pivot.
 
-int pivot(int a[], int i, int j){
+int pivot(int arr[], int i, int j){
 	int pivot =  i + rand() % (j - i +1);
 	return pivot;
 }
 
-int findRank(int *arr, int i, int j, int r){
+int findRank(int arr[], int i, int j, int r){
 	int p, k;
-	
 	p = pivot(arr,i,j);
-	//printf("\n Pivot is : %d",p);	
-	k = partition(arr,i,j,p);
-	//printf("\n Position of pivot %d, is %d",p,k);
+	k = partition(arr,i,j,p); // we are passing the index of the pivot.
 	if(r == (j-k+1))
-		return p;
+		return k;
 	else if( r < (j-k+1))
-		return findRank(arr ,k+1 ,j, r);
+		return findRank(arr ,k + 1 ,j, r);
 	else
-		return findRank(arr ,i ,k - 1, r - j + k -  1);
-	
+		return findRank(arr ,i ,k - 1, r - j + k - 1); // bug use r - j + k - 1 instead of r - j + k Since rank = j-k+1 we are neglecting last j-k+1 ranks when element is in that left half
+
 }
 
 void randomNumbers(int *A){	
@@ -103,7 +96,7 @@ int main(int argc, char *argv[]){
 	//Sorting looks : 1, 2, 7, 9, 10, 22, 30, 40, 55, 60, 80, 99, 100
     int size = sizeof(a)/sizeof(a[0]);
 	int rank = 10;
-    printf("\n The element with rank %d is %d", rank, a[findRank(a ,0 ,size -  1, rank)]);
+    printf("\n The element with rank %d is %d\n", rank, a[findRank(a ,0 ,size -  1, rank)]);
     printf("\n");
 	
 

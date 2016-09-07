@@ -36,7 +36,6 @@ void swap(int *a,int *b){
 // }
 
 // Initial Swapping is necessary here to keep the pivot in correct position after partitions
-
 /*
 
 Link : https://en.wikipedia.org/wiki/Quicksort
@@ -75,28 +74,23 @@ algorithm2 <<<<Hoare partition scheme>>>>
 
 */
 
-int partition(int A[], int f, int l, int pivot){
 
-	int i,j;
-	i = f;
-	swap(&A[pivot],&A[l]);
-	j = l - 1;
-	
-	while( i < j)
-	{
-
-		while(A[i] <= A[pivot]) i++;
-		while(A[j] > A[pivot]) j--;
-		if(i <= j){
-			swap(&A[i],&A[j]);
-			i++;
-		}		
-	}
-	j++;
-	swap(&A[j],&A[l]);	
-	return j;
+int partition (int arr[], int l, int h, int p)
+{
+    int x = arr[p];
+    int i = l - 1;
+ 
+    for (int j = l; j <= h- 1; j++)
+    {
+        if (arr[j] <= x)
+        {
+            i++;
+            swap (&arr[i], &arr[j]);
+        }
+    }
+    swap (&arr[i + 1], &arr[h]);
+    return (i + 1);
 }
-
 
 // We are using a fixed Pivot.
 int pivot(int arr[], int i, int j){
@@ -104,13 +98,9 @@ int pivot(int arr[], int i, int j){
 }
 
 int findRank(int arr[], int i, int j, int r){
-	int p, k, pivoted;
-
+	int p, k;
 	p = pivot(arr,i,j);
-	//printf("\n Pivot is : %d",arr[p]);
-	pivoted = arr[p];	
 	k = partition(arr,i,j,p); // we are passing the index of the pivot.
-	//printf("\n Position of pivot %d, is %d",pivoted,k);
 	if(r == (j-k+1))
 		return k;
 	else if( r < (j-k+1))
@@ -121,7 +111,8 @@ int findRank(int arr[], int i, int j, int r){
 }
 
 int main(int argc, char *argv[]){
-	int a[] = {60, 30, 100, 10}; 
+	//int a[] = {60, 30, 100, 10}; 
+	int a[] = {10, 30, 60, 100, 1, 2, 7, 9, 80, 40, 55, 22, 99}; 
 	// 10, 30, 60, 100
 	//Sorting looks : 1, 2, 7, 9, 10, 22, 30, 40, 55, 60, 80, 99, 100
     int size = sizeof(a)/sizeof(a[0]);
@@ -134,11 +125,6 @@ int main(int argc, char *argv[]){
 		scanf("%d",&rank);
 	}
 
-	// printf("\n");
-	// for (int i = 0; i < size; ++i)
-	// {
-	// 	printf("%d ", a[i] );
-	// }
     printf("\n");
 
 	return 0;
