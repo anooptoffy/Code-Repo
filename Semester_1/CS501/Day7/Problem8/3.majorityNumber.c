@@ -45,21 +45,44 @@ int partition(int A[], int f, int l, int pivot){
 
 	int i,j;
 	i = f;
-	j = l;
-	swap(&A[pivot],&A[j]);
+	swap(&A[pivot],&A[l]);
+	j = l - 1;
+	
 	while( i < j)
 	{
 
 		while(A[i] <= A[pivot]) i++;
 		while(A[j] > A[pivot]) j--;
-		if(i <= j)
+		if(i <= j){
 			swap(&A[i],&A[j]);
-		i++;
-		j--;
+			i++;
+		}		
 	}
+	j++;
 	swap(&A[j],&A[l]);	
 	return j;
 }
+
+
+// int partition(int A[], int f, int l, int pivot){
+
+// 	int i,j;
+// 	i = f;
+// 	j = l;
+// 	swap(&A[pivot],&A[j]);
+// 	while( i < j)
+// 	{
+
+// 		while(A[i] <= A[pivot]) i++;
+// 		while(A[j] > A[pivot]) j--;
+// 		if(i <= j)
+// 			swap(&A[i],&A[j]);
+// 		i++;
+// 		j--;
+// 	}
+// 	swap(&A[j],&A[l]);	
+// 	return j;
+// }
 
 
 
@@ -97,7 +120,7 @@ int findRank(int a[], int i, int j, int r){
 	else if( r < j-k+1)
 		return findRank(a,k+1,j,r);
 	else
-		return findRank(a,i,k,r-j+k-1);
+		return findRank(a,i,k -  1,r-j+k-1);
 }	
 
 int main(int argc, char const *argv[])
