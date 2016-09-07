@@ -14,6 +14,9 @@
 #define TOTAL_NUMBERS 1000000
 #define TOTAL_RANKS 100
 
+int medianOf(int arr[], int start, int end);	
+int goodPivot(int arr[], int i, int j);
+void swap(int *a, int *b);
 
 void swap(int *a,int *b){
 	int temp;
@@ -40,11 +43,51 @@ int partition (int arr[], int l, int h, int p)
     return (i + 1);
 }
 
-// Taking a random pivot instead of a fixed pivot.
-
 int goodPivot(int arr[], int i, int j){
-	int pivot =  i + rand() % (j - i +1);
-	return pivot;
+
+	if( (j - i) <= 5)
+		return medianOf(arr, i, j);
+
+	int start, end, pos, first;
+	first = i;
+	for (int k = i; k <= j; k = k + 5)
+	{
+		if( k >= j)
+			end = j;
+		else
+			end = k + 4;
+		start = k;
+		
+		pos = medianOf(arr, start, end);
+		printf("Median of %d is %d\n", k, arr[pos] );
+		swap(&arr[first], &arr[pos]);
+		first++;
+	}
+	return goodPivot(arr, i, first - 1);
+}
+
+
+// Using bubble sort
+int medianOf(int arr[], int start, int end){
+	printf("Start %d, End %d\n",start, end );
+	for(int i = start ; i <=  end; i++){
+		
+		for (int j = start ; j < end - (i - start); ++j)
+		{
+			if(arr[j] > arr[j+1]){
+				swap(&arr[j], &arr[j+1]);
+			}
+		}
+	}
+
+	printf("\n");
+	for (int i = start; i <= end; ++i)
+	{
+		printf("%d ", arr[i] );
+	}
+	printf("\n");
+
+	return start + ((end - start +  1) / 2);
 }
 
 int findRank(int arr[], int i, int j, int r){
