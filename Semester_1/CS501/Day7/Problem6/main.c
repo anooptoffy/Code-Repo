@@ -20,8 +20,9 @@ int main(int argc, char *argv[]){
  				max = a[j] -  a[i];
  			if(a[j] < a[i])
  				i = j-1;
+ 			printf("The value of i is %d, max is %d \n",i, max );
 		}
-		printf("When to buy, %d Day at price %d\n", i, a[i]);
+		printf("When to buy, Day %d at price %d\n", i, a[i]);
 	}
 
 	return 0;

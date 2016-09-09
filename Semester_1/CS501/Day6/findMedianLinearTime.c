@@ -71,7 +71,7 @@ int medianOf(int arr[], int start, int end){
 
 int main(int argc, char *argv[]){
 	int a[] = {10, 30, 60, 100, 1, 2, 7, 9, 80, 40, 55, 22, 99, 120, 108, 6}; 
-	//Sorting looks : 1, 2, 7, 9, 10, 22, 30, |40|, 55, 60, 80, 99, 100, 108, 120	
+	//Sorting looks : 1, 2, 6, 7, 9, 10, 22, 30, |40|, 55, 60, 80, 99, 100, 108, 120	
 	int size = sizeof(a)/sizeof(a[0]);
 
 	//printf("Median is %d \n",a[medianOf(a, 0, size - 1)]);
