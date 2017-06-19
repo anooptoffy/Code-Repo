@@ -37,55 +37,48 @@ const int N = 3e5;
 int main(int argc, char const *argv[])
 {
 	// For handling large inputs.
+	long long int N, K, CITY_GROUP[100000], Q, temp, city, M, NN;
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll int T, N, Q, Arr[100005], a, b, c, d;
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 
-	cin >> T;
-	while(T-- > 0) {
-	    cin >> N >> Q;
-	    for (ll int i = 1; i <= N; ++i)
-	    {
-	    	cin >> Arr[i];
-	    }
+	cin >> N >> K;
+	for (int i = 1; i <= K; ++i)
+	{
+		cin >> temp;
 
-	    for (ll int i = 0; i < Q; ++i)
-	    {
-	    	cin >> a >> b >> c >> d;
-	    	vll one, two;
-	    	for (int k = a; k <= b; ++k)
-	    	{
-	    		one.pb(Arr[k]);
-	    	}
+		if (temp > 0)
+		{
+			for (int j = 0; j < temp; ++j)
+			{
+				cin >> city;
+				CITY_GROUP[city] = i;
+			}
+		}
+	}
 
-	    	for (int k = c; k <= d; ++k)
-	    	{
-	    		two.pb(Arr[k]);
-	    	}
+	cin >> Q;
+	cout << Q << endl;
 
-	    	sort(one.begin(), one.end());
-	    	sort(two.begin(), two.end());
-
-	    	int count;
-	    	count = 0;
-
-	    	for (vll::iterator it = one.begin(), it2 = two.begin()  ; it != one.end() && it2 != two.end(); ++it, ++it2)
-    		{
-    			//cout << (*it) << " " << *it2 << endl;
-    			if(*it != *it2)
-    				count++;
-    		}	
-
-    		if(count <= 1)
-    			cout << "YES" << endl;
-    		else
-    			cout << "NO" << endl;
-	    }
+	for (int i = 1; i <= N; ++i)
+	{
+		cout << i << " " <<CITY_GROUP[i] << endl;
 	}
 	
+	for (int i = 0; i < Q; ++i)
+	{
+		cin >> M >> NN;
+		if(CITY_GROUP[M] == CITY_GROUP[NN])
+			cout << 0 << endl;
+		else if(CITY_GROUP[M] == K && CITY_GROUP[NN] == 1)
+			cout << 1 << endl;
+		else if(CITY_GROUP[M] == 1 && CITY_GROUP[NN] == K)
+			cout << 1 << endl;
+		else
+			cout << abs(CITY_GROUP[M] - CITY_GROUP[NN]) << endl;
+	}
 	return 0;
 }

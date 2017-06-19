@@ -44,6 +44,12 @@ int main(int argc, char const *argv[])
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 
+	ll int T, N;
+	cin >> T;
+	while(T-- > 0) {
+	    cin >> N;
+	    cout << (int)sqrt(N) << endl;
+	}
 	
 	return 0;
 }

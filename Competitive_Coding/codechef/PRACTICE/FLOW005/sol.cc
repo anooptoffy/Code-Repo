@@ -41,51 +41,47 @@ int main(int argc, char const *argv[])
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll int T, N, Q, Arr[100005], a, b, c, d;
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
+	ll int T, N, count, q;
 
 	cin >> T;
-	while(T-- > 0) {
-	    cin >> N >> Q;
-	    for (ll int i = 1; i <= N; ++i)
-	    {
-	    	cin >> Arr[i];
-	    }
-
-	    for (ll int i = 0; i < Q; ++i)
-	    {
-	    	cin >> a >> b >> c >> d;
-	    	vll one, two;
-	    	for (int k = a; k <= b; ++k)
-	    	{
-	    		one.pb(Arr[k]);
-	    	}
-
-	    	for (int k = c; k <= d; ++k)
-	    	{
-	    		two.pb(Arr[k]);
-	    	}
-
-	    	sort(one.begin(), one.end());
-	    	sort(two.begin(), two.end());
-
-	    	int count;
-	    	count = 0;
-
-	    	for (vll::iterator it = one.begin(), it2 = two.begin()  ; it != one.end() && it2 != two.end(); ++it, ++it2)
-    		{
-    			//cout << (*it) << " " << *it2 << endl;
-    			if(*it != *it2)
-    				count++;
-    		}	
-
-    		if(count <= 1)
-    			cout << "YES" << endl;
-    		else
-    			cout << "NO" << endl;
-	    }
+	while (T-- > 0) {
+		cin >> N;
+		count = 0;
+		if (N >= 100)
+		{
+			q = N / 100;
+			count = count + q;
+			N = N - q * 100;
+		}
+		if (N >= 50) {
+			q = N / 50;
+			count = count + q;
+			N = N - q * 50;
+		}
+		if (N >= 10) {
+			q = N / 10;
+			count = count + q;
+			N = N - q * 10;
+		}
+		if (N >= 5) {
+			q = N / 5;
+			count = count + q;
+			N = N - q * 5;
+		}
+		if (N >= 2) {
+			q = N / 2;
+			count = count + q;
+			N = N - q * 2;
+		}
+		if (N >= 1) {
+			q = N / 1;
+			count = count + q;
+			N = N - q * 1;
+		}
+		cout << count << endl;
 	}
-	
+
 	return 0;
 }

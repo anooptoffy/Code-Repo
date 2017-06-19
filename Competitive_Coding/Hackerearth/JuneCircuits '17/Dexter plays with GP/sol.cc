@@ -41,50 +41,33 @@ int main(int argc, char const *argv[])
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll int T, N, Q, Arr[100005], a, b, c, d;
+	unsigned ll int T, S, R, P, sum, f, s, N, flag;
+
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
-
 	cin >> T;
 	while(T-- > 0) {
-	    cin >> N >> Q;
-	    for (ll int i = 1; i <= N; ++i)
-	    {
-	    	cin >> Arr[i];
+	    cin >> R >> S >> P;
+	    sum = 1;
+	    f = 1;
+	    flag = 0;
+	    N = 1;
+	    
+	    while(N < P) {
+	     	   f = (f * R) % P;	     	   
+	     	   sum += f;
+	     	   N++;
+	     	   if(sum % P == S){
+	     	   	flag = 1;
+	     	   	break;
+	     	   }
 	    }
 
-	    for (ll int i = 0; i < Q; ++i)
-	    {
-	    	cin >> a >> b >> c >> d;
-	    	vll one, two;
-	    	for (int k = a; k <= b; ++k)
-	    	{
-	    		one.pb(Arr[k]);
-	    	}
-
-	    	for (int k = c; k <= d; ++k)
-	    	{
-	    		two.pb(Arr[k]);
-	    	}
-
-	    	sort(one.begin(), one.end());
-	    	sort(two.begin(), two.end());
-
-	    	int count;
-	    	count = 0;
-
-	    	for (vll::iterator it = one.begin(), it2 = two.begin()  ; it != one.end() && it2 != two.end(); ++it, ++it2)
-    		{
-    			//cout << (*it) << " " << *it2 << endl;
-    			if(*it != *it2)
-    				count++;
-    		}	
-
-    		if(count <= 1)
-    			cout << "YES" << endl;
-    		else
-    			cout << "NO" << endl;
+	    if(flag == 1){
+	    	cout << N << endl; 
 	    }
+	    else
+	    	cout << -1 << endl;
 	}
 	
 	return 0;

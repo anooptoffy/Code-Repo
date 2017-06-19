@@ -34,6 +34,8 @@ typedef vector<vll>		vvl;
 const ll mod = 2e18;
 const int N = 3e5;
 
+ll int NN, Arr[100005];
+
 int main(int argc, char const *argv[])
 {
 	// For handling large inputs.
@@ -41,51 +43,24 @@ int main(int argc, char const *argv[])
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll int T, N, Q, Arr[100005], a, b, c, d;
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
-
-	cin >> T;
-	while(T-- > 0) {
-	    cin >> N >> Q;
-	    for (ll int i = 1; i <= N; ++i)
-	    {
-	    	cin >> Arr[i];
-	    }
-
-	    for (ll int i = 0; i < Q; ++i)
-	    {
-	    	cin >> a >> b >> c >> d;
-	    	vll one, two;
-	    	for (int k = a; k <= b; ++k)
-	    	{
-	    		one.pb(Arr[k]);
-	    	}
-
-	    	for (int k = c; k <= d; ++k)
-	    	{
-	    		two.pb(Arr[k]);
-	    	}
-
-	    	sort(one.begin(), one.end());
-	    	sort(two.begin(), two.end());
-
-	    	int count;
-	    	count = 0;
-
-	    	for (vll::iterator it = one.begin(), it2 = two.begin()  ; it != one.end() && it2 != two.end(); ++it, ++it2)
-    		{
-    			//cout << (*it) << " " << *it2 << endl;
-    			if(*it != *it2)
-    				count++;
-    		}	
-
-    		if(count <= 1)
-    			cout << "YES" << endl;
-    		else
-    			cout << "NO" << endl;
-	    }
+	ll int jump;
+	cin >> NN;
+	for (ll int i = 1; i <= NN; ++i)
+	{
+		cin >> Arr[i];
 	}
+	jump = 1;
+	while(1){
+		if((jump + Arr[jump]) > NN){
+			break;
+		}
+		jump++;
+	}	
+
+	cout << jump << endl;
+
 	
 	return 0;
 }

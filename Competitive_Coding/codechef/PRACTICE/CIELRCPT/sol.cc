@@ -41,50 +41,75 @@ int main(int argc, char const *argv[])
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	ll int T, N, Q, Arr[100005], a, b, c, d;
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
+	ll int T, P, q, count;
 
 	cin >> T;
 	while(T-- > 0) {
-	    cin >> N >> Q;
-	    for (ll int i = 1; i <= N; ++i)
-	    {
-	    	cin >> Arr[i];
+	    cin >> P;
+	    count = 0;
+	    if(P >=  2048){
+	    	q = P / 2048;
+	    	count = count + q;
+	    	P = P - q* 2048;
 	    }
-
-	    for (ll int i = 0; i < Q; ++i)
-	    {
-	    	cin >> a >> b >> c >> d;
-	    	vll one, two;
-	    	for (int k = a; k <= b; ++k)
-	    	{
-	    		one.pb(Arr[k]);
-	    	}
-
-	    	for (int k = c; k <= d; ++k)
-	    	{
-	    		two.pb(Arr[k]);
-	    	}
-
-	    	sort(one.begin(), one.end());
-	    	sort(two.begin(), two.end());
-
-	    	int count;
-	    	count = 0;
-
-	    	for (vll::iterator it = one.begin(), it2 = two.begin()  ; it != one.end() && it2 != two.end(); ++it, ++it2)
-    		{
-    			//cout << (*it) << " " << *it2 << endl;
-    			if(*it != *it2)
-    				count++;
-    		}	
-
-    		if(count <= 1)
-    			cout << "YES" << endl;
-    		else
-    			cout << "NO" << endl;
+	    if(P >=  1024){
+	    	q = P / 1024;
+	    	count = count + q;
+	    	P = P - q* 1024;
 	    }
+	    if(P >=  512){
+	    	q = P / 512;
+	    	count = count + q;
+	    	P = P - q* 512;
+	    }
+	    if(P >=  256){
+	    	q = P / 256;
+	    	count = count + q;
+	    	P = P - q* 256;
+	    }
+	    if(P >=  128){
+	    	q = P / 128;
+	    	count = count + q;
+	    	P = P - q* 128;
+	    }
+	    if(P >=  64){
+	    	q = P / 64;
+	    	count = count + q;
+	    	P = P - q* 64;
+	    }
+	    if(P >=  32){
+	    	q = P / 32;
+	    	count = count + q;
+	    	P = P - q* 32;
+	    }
+	    if(P >=  16){
+	    	q = P / 16;
+	    	count = count + q;
+	    	P = P - q* 16;
+	    }
+	    if(P >=  8){
+	    	q = P / 8;
+	    	count = count + q;
+	    	P = P - q* 8;
+	    }
+	    if(P >=  4){
+	    	q = P / 4;
+	    	count = count + q;
+	    	P = P - q* 4;
+	    }
+	    if(P >=  2){
+	    	q = P / 2;
+	    	count = count + q;
+	    	P = P - q* 2;
+	    }
+	    if(P >=  1){
+	    	q = P / 1;
+	    	count = count + q;
+	    	P = P - q* 1;
+	    }
+	    cout << count << endl;
 	}
 	
 	return 0;
